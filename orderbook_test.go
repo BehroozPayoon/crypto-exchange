@@ -7,12 +7,27 @@ import (
 
 func TestLimit(t *testing.T) {
 	l := NewLimit(10_000)
-	buyOrder := NewOrder(true, 5)
+	buyOrderA := NewOrder(true, 5)
+	buyOrderB := NewOrder(true, 8)
+	buyOrderC := NewOrder(true, 10)
 
-	l.AddOrder(buyOrder)
+	l.AddOrder(buyOrderA)
+	l.AddOrder(buyOrderB)
+	l.AddOrder(buyOrderC)
+
+	l.DeleteOrder(buyOrderB)
+
 	fmt.Println(l)
 }
 
 func TestOrderbook(t *testing.T) {
+	ob := NewOrderbook()
 
+	buyOrderA := NewOrder(true, 10)
+	buyOrderB := NewOrder(true, 20)
+
+	ob.PlaceOrder(18_000, buyOrderA)
+	ob.PlaceOrder(18_000, buyOrderB)
+
+	fmt.Println(ob.Bids[0])
 }
